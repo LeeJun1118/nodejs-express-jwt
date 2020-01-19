@@ -26,6 +26,9 @@ app.get('/',(req,res)=>{
   res.send('Hello JWT')
 });
 
+//api경로로 요청이 들어오면 /routes/api로 연결시킴.
+app.use('/api',require('./routes/api'));
+
 //서버 열기
 app.listen(port,()=>{
   console.log('Express is running on port ${port}')
