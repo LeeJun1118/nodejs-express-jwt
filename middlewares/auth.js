@@ -1,10 +1,10 @@
 // jwt 와 발급 / 검증 작업을 한다.
 
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req,res,next)=>{
     // 헤더 또는 url 에서 token 을 읽어온다.
-    const token = req.headers['x-access-token'] || req.query.token
+    const token = req.headers['x-access-token'] || req.query.token;
 
     if(!token){
         return res.status(403).json({
@@ -17,10 +17,10 @@ const authMiddleware = (req,res,next)=>{
     const p = new Promise(
         (resolve,reject) => {
             jwt.verify(token,req.app.get('jwt-secret'),(err,decoded)=>{
-                if(err) reject (err)
+                if(err) reject (err);
                 resolve(decoded)
             })
-        })
+        });
 
     //검증에 실패하면 에러 메시지를 보낸다
     const onError = (error) =>{
@@ -28,14 +28,14 @@ const authMiddleware = (req,res,next)=>{
             success: false,
             message: error.message
         })
-    }
+    };
 
     //약속 실행
     p.then((decoded)=>{
-        req.decoded = decoded
+        req.decoded = decoded;
         next()
     }).catch(onError)
 
-}
+};
 
-module.exports = authMiddleware
+module.exports = authMiddleware;

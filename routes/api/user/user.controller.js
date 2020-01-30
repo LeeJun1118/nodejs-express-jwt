@@ -17,7 +17,7 @@ exports.list = (req,res) => {
                 res.json({users})
             }
         )
-}
+};
 
 /*
     POST /api/user/assign-admin/:username
@@ -38,4 +38,4 @@ exports.assignAdmin = (req,res) => {
                 success: true
             })
     )
-}
+};

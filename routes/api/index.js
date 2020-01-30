@@ -6,6 +6,6 @@ const user = require('./user');
 
 router.use('/auth',auth);
 router.use('/user',authMiddleware);
-router.use('/user',user)
+router.use('/user',user);
 
 module.exports = router;
